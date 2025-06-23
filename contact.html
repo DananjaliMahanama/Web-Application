@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - OKiD Jewellery</title>
+    <style>
+        body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #1c1c50;
+      color: #fff;
+      padding: 36px 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .logo img {
+      height: 0px;
+      margin-right: 10px;
+    }
+
+    nav h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content li {
+      padding: 8px 16px;
+    }
+
+    .dropdown-content li a {
+      color: white;
+    }
+
+        .container {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            
+        }
+        input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            width: 96%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #1c1c50;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #222;
+        }
+
+        footer {
+            background-color: #1c1c50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+       <div class="logo">
+        <img src="image/logo.jpg" alt="Logo" />
+        <h1>OKID Jewellery Store</h1>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#category">Category</a>
+          <ul class="dropdown-content">
+            
+            <li><a href="beaded_neckles.html">Beaded Necklace</a></li>
+            <li><a href="beaded_ring.html">Beaded Ring</a></li>
+            <li><a href="beaded_earring.html">Beaded Earring</a></li>
+            <li><a href="beaded_anklet.html">Beaded Anklet</a></li>
+            <li><a href="beaded_bangle.html">Beaded Bangle</a></li>
+          </ul>
+        </li>
+        <li><a href="customize.html">Customize</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.php">Cart </a></li>
+        <li><a href="review.php">Reviews</a></li>
+        <li><a href="admin_login.html">Admin Login</a></li>
+       
+       <li><a href="login.html">Login</a></li> 
+        <li><a href="signup.html">Sign Up</a></li> 
+        <li><a href="logout.php" style="color: red;">Logout</a></li>
+
+      </ul>
+    </nav>
+  </header>
+<div class="container">
+    <h2>Contact Us</h2>
+    <form action="submit_contact.php" method="POST">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="email" name="email" placeholder="Your Email Address" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</div>
+
+
+
+
+
+<footer>
+ OKiD Jewellery. 
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jewellery Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #1c1c50;
+      color: #fff;
+      padding: 5px 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .logo img {
+      height: 90px;
+      margin-right: 10px;
+    }
+
+    nav h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      top: 100%;
+      left: 0;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content li {
+      padding: 8px 16px;
+    }
+
+    .dropdown-content li a {
+      color: white;
+    }
+
+    .banner {
+      width: 100%;
+      height: 420px;
+      background-image: url('image/ss.png');
+      background-size: cover;
+      background-position: center;
+      
+    }
+
+    #products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background-color: white;
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    #cart {
+      padding: 20px;
+      background-color: #fff;
+      margin: 20px;
+      border: 1px solid #ccc;
+    }
+
+    #cart-items {
+      list-style-type: none;
+      padding: 0;
+    }
+
+   
+    
+   .product-card {
+  width: 310px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  padding-bottom: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #1c1c50;
+  font-weight: 700;
+}
+
+.product-card .stars {
+  color: gold;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.product-card .price {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.product-card .price .current {
+  font-weight: bold;
+  color: #1c1c50;
+}
+
+.product-card .price .old {
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 10px;
+}
+
+
+footer {
+    background-color: #1c1c50; 
+    color: #f0f0f0; 
+    padding-top: 40px;
+    font-size: 0.95em;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.footer-column h3 {
+    color: #f0f0f0; 
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #f0f0f0; 
+}
+
+.footer-column p,
+.footer-column ul {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 5px 0; 
+    display: block; 
+}
+.footer-column ul li a:hover {
+    color: #8e2de2;
+}
+
+
+.footer-column.about-us p {
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.footer-column.about-us p span {
+    display: block; 
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.footer-column.about-us p i {
+    margin-right: 10px;
+    color: #ffa500; 
+}
+
+
+
+.social-icons {
+    margin-top: 15px;
+    display: flex; 
+    gap: 15px; 
+}
+
+.social-icons a {
+    color: #f0f0f0;
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #f0f0f0; 
+    color: #f0f0f0; 
+    transform: translateY(-3px); 
+}
+
+
+.copyright-bar {
+    background-color: #111523; 
+    padding: 15px 0;
+    text-align: center;
+    color: #aaa; 
+    font-size: 0.85em;
+}
+
+.copyright-bar p {
+    margin: 0;
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+       <div class="logo">
+        <img src="image/logo.jpg" alt="Logo" />
+        <h1>OKID Jewellery Store</h1>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#category">Category</a>
+          <ul class="dropdown-content">
+            
+            <li><a href="beaded_neckles.html">Beaded Necklace</a></li>
+            <li><a href="beaded_ring.html">Beaded Ring</a></li>
+            <li><a href="beaded_earring.html">Beaded Earring</a></li>
+            <li><a href="beaded_anklet.html">Beaded Anklet</a></li>
+            <li><a href="beaded_bangle.html">Beaded Bangle</a></li>
+          </ul>
+        </li>
+        <li><a href="customize.html">Customize</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.php">Cart </a></li>
+        <li><a href="review.php">Reviews</a></li>
+        <li><a href="admin_login.html">Admin Login</a></li>
+       
+       <li><a href="login.php">Login</a></li> 
+        <li><a href="signup.php">Sign Up</a></li> 
+        <li><a href="logout.php" style="color: red;">Logout</a></li>
+
+      </ul>
+    </nav>
+  </header>
+  <br><br>
+  <div class="banner"></div>
+
+ 
+<!-- Discount Items Section -->
+<section style="padding: 40px; background-color: #f1f1f1;">
+    <h2 style="text-align: center; margin-bottom: 30px;">DISCOUNT ITEMS</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        <div style="width: 350px; background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ccc;">
+            <img src="image/ff.jpeg" alt="Discount Necklace" style="width: 100%; border-radius: 5px;">
+            <h3>Beaded Set</h3>
+            <p><del>Rs900.00</del> <strong style="color: red;">Rs800.00</strong></p>
+        </div>
+        <div style="width: 350px; background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ccc;">
+            <img src="image/nn.jpeg" alt="Discount Earring" style="width: 100%; border-radius: 5px;">
+            <h3>Beaded Set</h3>
+            <p><del>Rs900.00</del> <strong style="color: red;">Rs700.00</strong></p>
+        </div>
+        <div style="width: 350px; background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ccc;">
+            <img src="image/gg.jpeg" alt="Discount Bangle" style="width: 100%; border-radius: 5px;">
+            <h3>Beaded Ring</h3>
+            <p><del>Rs300.00</del> <strong style="color: red;">Rs250.00</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Items Section -->
+<section style="padding: 40px;">
+    <h2 style="text-align: center; margin-bottom: 30px;">POPULAR ITEMS</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        <!-- index.html -->
+<div class="product-card">
+  <img src="image/17.jpeg" alt="Beaded Ring">
+  <h3>Beaded Earring</h3>
+  <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.250.00</span>
+    <span class="old">Rs.300.00</span>
+  </p>
+</div>
+
+
+        <!-- index.html -->
+<div class="product-card">
+    <img src="image/19.jpeg" alt="Beaded Ring">
+    <h3>Beaded Earring</h3>
+    <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.250.00</span>
+    <span class="old">Rs.300.00</span>
+  </p>
+</div>
+      <!-- index.html -->
+<div class="product-card">
+    <img src="image/im11.jpeg" alt="Beaded Ring">
+    <h3>Beaded Anklet</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.300.00</span>
+    <span class="old">Rs.400.00</span>
+  </p>
+</div>
+
+       <!-- index.html -->
+<div class="product-card">
+    <img src="image/im16.jpeg" alt="Beaded Ring">
+    <h3>Beaded Necklace</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+
+       <!-- index.html -->
+<div class="product-card">
+    <img src="image/10.jpeg" alt="Beaded Ring">
+    <h3>Beaded Anklet</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.350.00</span>
+    <span class="old">Rs.400.00</span>
+  </p>
+</div>
+
+     <!-- index.html -->
+<div class="product-card">
+    <img src="image/16.jpeg" alt="Beaded Ring">
+    <h3>Beaded Earring</h3>
+    <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+
+      <!-- index.html -->
+<div class="product-card">
+    <img src="image/im13.jpeg" alt="Beaded Ring">
+    <h3>Beaded Bangle</h3>
+  <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.250.00</span>
+    <span class="old">Rs.300.00</span>
+  </p>
+</div>
+
+        <!-- index.html -->
+<div class="product-card">
+    <img src="image/im23.jpeg" alt="Beaded Ring">
+    <h3>Beaded Bangle</h3>
+    <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.250.00</span>
+    <span class="old">Rs.300.00</span>
+  </p>
+</div>
+ <!-- index.html -->
+<div class="product-card">
+    <img src="image/kk.jpeg" alt="Beaded Ring">
+    <h3>Beaded Necklace</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+      <!-- index.html -->
+<div class="product-card">
+    <img src="image/tt.jpeg" alt="Beaded Ring">
+    <h3>Beaded Necklace</h3>
+<div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+
+       <!-- index.html -->
+<div class="product-card">
+    <img src="image/vb.jpeg" alt="Beaded Ring">
+    <h3>Beaded Necklace</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+       <!-- index.html -->
+<div class="product-card">
+    <img src="image/hh.jpeg" alt="Beaded Ring">
+    <h3>Beaded Necklace</h3>
+   <div class="stars">
+    ★★★★★
+  </div>
+  <p class="price">
+    <span class="current">Rs.150.00</span>
+    <span class="old">Rs.200.00</span>
+  </p>
+</div>
+    </div>
+
+   
+
+</section>
+
+
+<footer>
+        <div class="container footer-grid">
+            <div class="footer-column about-us">
+                <h3>OKID Jewellery</h3>
+                <p>Feel Your Heart Thumping As You Breeze Into The Magical Realm Of Enchanted Pieces. Perfect Jewellery For Gift In Treating Your Self.</p>
+                <p>OKID Jewellery<br>Sinhapura<br>Polonnaruwa</p>
+                <p>
+                    <span><i class="fas fa-phone-alt"></i> Phone: 0703114183</span><br>
+                    <span><i class="fas fa-envelope"></i> Email: okidjewellery@gmail.com</span>
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li> <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.php">Shop All</a></li>  <li><a href="review.php">Reviews</a></li> 
+            </div>
+
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Online Shopping</a></li>
+                    </ul>
+            </div>
+
+            <div class="footer-column social-network">
+                <h3>Our Social Network</h3>
+                <div class="social-icons">
+                    <a href="#" class="twiiter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-google-plus"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div class="container">
+                <p>OKID Beaded Jewellery.</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    
+    
+   <script>
+  function addToCart(id, name, price) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'add_to_cart.php';
+
+    const idInput = document.createElement('input');
+    idInput.type = 'hidden';
+    idInput.name = 'id';
+    idInput.value = id;
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'hidden';
+    nameInput.name = 'name';
+    nameInput.value = name;
+
+    const priceInput = document.createElement('input');
+    priceInput.type = 'hidden';
+    priceInput.name = 'price';
+    priceInput.value = price;
+
+    form.appendChild(idInput);
+    form.appendChild(nameInput);
+    form.appendChild(priceInput);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+
+
+    function checkout() {
+      if(cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      alert('Checkout functionality coming soon!');
+      
+    }
+
+    updateCartUI(); 
+  </script>
+
+</body>
+
+</html>

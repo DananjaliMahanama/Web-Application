@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        h1 { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        button { padding: 5px 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+<table id="cartTable">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price ($)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cart items go here -->
+    </tbody>
+</table>
+
+<p id="emptyMessage" style="display:none;">Your cart is empty.</p>
+
+<script>
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const tbody = document.querySelector("#cartTable tbody");
+        tbody.innerHTML = "";
+
+        if (cart.length === 0) {
+            document.getElementById("cartTable").style.display = "none";
+            document.getElementById("emptyMessage").style.display = "block";
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td><button onclick="removeItem(${index})">Remove</button></td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+    }
+
+    window.onload = loadCart;
+</script>
+
+</body>
+</html>
